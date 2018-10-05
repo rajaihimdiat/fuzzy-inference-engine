@@ -90,6 +90,7 @@ Now, any change to the code will be reflected when running the code.
 + [Project Packaging](https://packaging.python.org)
 + [Sample Package](https://github.com/pypa/sampleproject)
 + [Package Setup](https://pythonhosted.org/an_example_pypi_project/setuptools.html)
++ [Virtual Environments](https://python-guide-cn.readthedocs.io/en/latest/dev/virtualenvs.html)
 + [Licensing](https://choosealicense.com/licenses)
 + [Testing](https://docs.pytest.org/en/latest/goodpractices.html)
 
