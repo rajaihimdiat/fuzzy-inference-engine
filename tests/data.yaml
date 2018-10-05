@@ -1,0 +1,104 @@
+# Description file for The Tipping Problem
+# http://pythonhosted.org/scikit-fuzzy/auto_examples/plot_tipping_problem.html
+# https://www.mathworks.com/help/fuzzy/fuzzy-inference-process.html
+
+variables:
+  - name:            'service'
+    min:             0
+    max:             10
+    step:            1
+    value:           3
+    levels:
+      - name:        'poor'
+        mf:          'triangle' # specify the function type
+        params:      [0, 0, 5]  # specify here; the fuzzy engine does not know
+                                # what 'poor' means
+      - name:        'good'
+        mf:          'triangle'
+        params:      [0, 5, 10]
+      - name:        'excellent'
+        mf:          'triangle'
+        params:      [5, 10, 10]
+  - name:            'food'
+    min:             0
+    max:             10
+    step:            1
+    value:           8
+    levels:
+      - name:        'rancid'
+        mf:          'triangle'
+        params:      [0, 0, 5]
+      - name:        'average'
+        mf:          'triangle'
+        params:      [0, 5, 10]
+      - name:        'delicious'
+        mf:          'triangle'
+        params:      [5, 10, 10]
+  - name:            'tip'
+    min:             0
+    max:             25
+    step:            1
+    value:           null
+    levels:
+      - name:        'cheap'
+        mf:          'triangle'
+        params:      [0, 0, 13]
+      - name:        'average'
+        mf:          'triangle'
+        params:      [0, 13, 25]
+      - name:        'generous'
+        mf:          'triangle'
+        params:      [13, 25, 25]
+
+minimal_variable:
+  - name:            'tip'
+    min:             0
+    max:             25
+    value:           null
+    levels:
+      - name:        'cheap'
+      - name:        'average'
+      - name:        'generous'
+
+rules:
+  - weight: 1
+    antecedent:
+        operator:    'or'
+        variables:
+          - name:    'service'
+            level:   'poor'
+          - name:    'food'
+            level:   'rancid'
+    consequent:
+        implication: 'min'
+        variables:
+          - name:    'tip'
+            level:   'cheap'
+  - weight: 1
+    antecedent:
+        operator:    'or'
+        variables:
+          - name:    'service'
+            level:   'good'
+    consequent:
+        implication: 'min'
+        variables:
+          - name:    'tip'
+            level:   'average'
+  - weight: 1
+    antecedent:
+        operator:    'or'
+        variables:
+          - name:    'service'
+            level:   'excellent'
+          - name:    'food'
+            level:   'delicious'
+    consequent:
+        implication: 'min'
+        variables:
+          - name:    'tip'
+            level:   'generous'
+
+aggregation:         'or'
+
+defuzzification:     'centroid'

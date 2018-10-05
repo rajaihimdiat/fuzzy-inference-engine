@@ -1,0 +1,22 @@
+# OS X Finder application file
+**/.DS_Store
+
+# Vim backup files
+**/.*.swp
+
+# Python
+**/__pycache__
+**/.pyc
+**/.ipynb_checkpoints
+**/*.egg-info
+
+# Emacs
+**/~*
+**/flymd.*
+
+#**/*.png
+**/*.csv
+**/.cache
+
+# Examples intermediate files
+examples/nodes
